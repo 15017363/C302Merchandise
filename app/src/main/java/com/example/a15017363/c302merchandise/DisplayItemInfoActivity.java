@@ -28,7 +28,7 @@ public class DisplayItemInfoActivity extends AppCompatActivity {
         super.onStart();
         Intent intent = getIntent();
         userId = intent.getStringExtra("com.example.MAIN_MESSAGE");
-        HttpRequest request= new HttpRequest("http://10.0.2.2/C302_P07/getItemById.php?Id=" + userId);
+        HttpRequest request= new HttpRequest("http://10.0.2.2/C302_P07/getItemById.php?Id="+ userId);
         request.setMethod("GET");
         request.execute();
 
@@ -36,6 +36,11 @@ public class DisplayItemInfoActivity extends AppCompatActivity {
             String jsonString = request.getResponse();
             JSONObject jsonObj = new JSONObject(jsonString);
             // TODO 01: Set values in the EditText fields
+
+            etItemName = (EditText)findViewById(R.id.editTextItemName);
+            etPrice = (EditText)findViewById(R.id.editTextPrice);
+            etQuantity = (EditText)findViewById(R.id.editTextQuantity);
+
             etItemName.setText(jsonObj.getString("item_name"));
             etPrice.setText(jsonObj.getString("quantity"));
             etQuantity.setText(jsonObj.getString("price"));
